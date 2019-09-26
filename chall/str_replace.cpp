@@ -2,9 +2,9 @@
 #include <string>
 using namespace std;
 
-string ReplaceString(string subject, const string& search, const string& replace) {
+string replace_string(string subject, const string& search, const string& replace) {
 	size_t pos = 0;
-	while ((pos = subject.find(search, pos)) != std::string::npos) {
+	while ((pos = subject.find(search, pos)) != string::npos) {
 		subject.replace(pos, search.length(), replace);
 		pos += replace.length();
 	}
@@ -17,12 +17,17 @@ int main() {
 	cout << "Your output must be: '" << solution << "' to win:" << endl;
 	char str[100];
 	cin.getline(str, sizeof(str));
-	string output = ReplaceString(str, str_to_replace, "");
+	string output = replace_string(str, str_to_replace, "");
 	cout << "Your output is:" << endl;
 	cout << output << endl;
 
-	if (solution == output)
-		cout << "Congratulations, you completed this chall" << endl;
-	else
-		cout << "You fail" << endl;
+	string msg {""};
+	if (solution == output) {
+		msg = "Congratulations, you completed this chall";
+	}
+	else {
+		msg = "You fail";
+	}
+
+	cout << msg << endl;
 }
